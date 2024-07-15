@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes twinkle {
+  0%,
+  100% {
+    text-shadow: 0 0 8px #fff, 0 0 10px #fff, 0 0 15px #3b82f6, 0 0 20px #9333ea;
+  }
+  50% {
+    text-shadow: 0 0 4px #fff, 0 0 5px #fff, 0 0 7px #3b82f6, 0 0 10px #9333ea;
+  }
+}
+
+.glow-twinkle {
+  animation: twinkle 2s infinite alternate;
+}
