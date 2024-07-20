@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbtn from "./Navbtn";
 import "../app/globals.css";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Navbar() {
-
+  const { data: session } = useSession();
   const list = ["Home", "About", "Contact"];
 
   return (
@@ -18,7 +19,6 @@ export default function Navbar() {
         </h1>
       </div>
       <ul className="flex gap-8 items-center text-white">
-
         {list.map((item, key) => {
           return (
             <li key={key}>
@@ -27,14 +27,15 @@ export default function Navbar() {
           );
         })}
         <li>
-          <Link href="/login">
-            <Navbtn text="Login" />
-          </Link>
-        </li>
-        <li>
-          <Link href="/signup">
-            <Navbtn text="Sign Up" />
-          </Link>
+          {session ? (
+            <Link onClick={()=>{signOut()}}>
+              <Navbtn text="Logout" />
+            </Link>
+          ) : (
+            <Link href="/login">
+              <Navbtn text="Login" />
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
